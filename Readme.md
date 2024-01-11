@@ -2,6 +2,10 @@
 
 Send notifications using an API.
 
+# API documentation
+
+`http://localhost:8000/docs`
+
 ### Available notificator providers
 
 - ✅ Email
