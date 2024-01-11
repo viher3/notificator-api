@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Notificator\Email;
+namespace App\Notificator\Application\Email;
 
 use App\Notification\Domain\Notification;
-use App\Notificator\Notificator;
+use App\Notificator\Domain\Notificator;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
