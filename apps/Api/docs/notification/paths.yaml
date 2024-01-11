@@ -1,0 +1,26 @@
+paths:
+
+  /notifications/email/send:
+    post:
+      summary: Send email notification
+      tags:
+        - 📧 Notifications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                to:
+                  type: string
+                from:
+                  type: string
+                message:
+                  type: string
+                subject:
+                  type: string
+      responses:
+        '200':
+          description: Ok
+        '500':
+          description: Internal server error

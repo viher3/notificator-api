@@ -1,0 +1,3 @@
+api_route_modules:
+  resource: './routes/'
+  type: directory

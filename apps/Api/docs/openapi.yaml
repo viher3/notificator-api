@@ -18,3 +18,4 @@ components:
           format: int32
         message:
           type: string
+

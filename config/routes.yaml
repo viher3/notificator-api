@@ -2,3 +2,6 @@ home:
   path: /
   controller: Apps\Api\src\Controller\HomeController
   methods: ['GET']
+
+api_routes:
+  resource: '../apps/Api/config/routes.yaml'
