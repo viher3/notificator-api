@@ -1,0 +1,12 @@
+nelmio_api_doc:
+  documentation:
+    info:
+      title: 'Notificator Api'
+      version: 0.0.1
+  areas:
+    disable_default_routes: true
+    path_patterns:
+      - '^!/docs$'
+
+parameters:
+  api_url: '%env(API_URL)%'

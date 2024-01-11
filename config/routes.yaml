@@ -1,4 +1,4 @@
 home:
   path: /
-  controller: Apps\Api\Controller\HomeController
+  controller: Apps\Api\src\Controller\HomeController
   methods: ['GET']
