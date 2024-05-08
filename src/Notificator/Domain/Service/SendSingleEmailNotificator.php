@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notificator\Application\SendSingleEmail;
+namespace App\Notificator\Domain\Service;
 
 use App\Notification\Domain\Notification;
 use App\Notificator\Domain\Notificator;

@@ -2,8 +2,9 @@
 
 namespace Apps\Api\src\Controller\Notification;
 
-use App\Notification\Domain\EmailNotification;
-use App\Notificator\Application\SendSingleEmail\SendSingleEmailNotificator;
+use App\Notificator\Application\SendSingleEmail\SendSingleEmailCommand;
+use App\Notificator\Application\SendSingleEmail\SendSingleEmailHandler;
+use Assert\Assert;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,33 +15,40 @@ use Symfony\Component\HttpFoundation\Response;
 class SendSingleEmailNotificationController extends AbstractController
 {
     public function __construct(
-        private SendSingleEmailNotificator $emailNotificator
+        private SendSingleEmailHandler $sendSingleEmailNotificatorHandler
     )
     {
     }
 
-    public function __invoke(Request $request) : JsonResponse
+    public function __invoke(Request $request): JsonResponse
     {
         $body = json_decode($request->getContent(), true);
 
-        try{
+        try {
             $to = $body['to'] ?? null;
             $from = $body['from'] ?? null;
             $message = $body['message'] ?? null;
             $subject = $body['subject'] ?? '';
 
-            Assertion::notEmpty($to, '"to" field is not specified.');
-            Assertion::notEmpty($from, '"from" field is not specified.');
-            Assertion::notEmpty($message, '"message" field is not specified.');
+            Assert::lazy()
+                ->that($to)->notEmpty('"to" field is not specified.')
+                ->that($from)->notEmpty('"from" field is not specified.')
+                ->that($message)->notEmpty('"message" field is not specified.')
+                ->verifyNow();
 
-            $this->emailNotificator->send(
-                new EmailNotification($to, $from, $message, $subject)
+            $this->sendSingleEmailNotificatorHandler->execute(
+                new SendSingleEmailCommand(
+                    from: $from,
+                    message: $message,
+                    recipients: $to,
+                    subject: $subject
+                )
             );
 
             return new JsonResponse([], Response::HTTP_OK);
-        }catch (AssertionFailedException $e){
+        } catch (AssertionFailedException $e) {
             return new JsonResponse(['error' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return new JsonResponse(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

@@ -10,15 +10,24 @@ paths:
         content:
           application/json:
             schema:
-              properties:
-                to:
-                  type: string
-                from:
-                  type: string
-                message:
-                  type: string
-                subject:
-                  type: string
+              $ref: '#/components/schemas/Notification'
+      responses:
+        '200':
+          description: Ok
+        '500':
+          description: Internal server error
+
+  /notifications/email/batch-send:
+    post:
+      summary: Send batch email notifications
+      tags:
+        - 📧 Notifications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Notifications'
       responses:
         '200':
           description: Ok

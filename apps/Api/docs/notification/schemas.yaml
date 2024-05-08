@@ -1,0 +1,19 @@
+components:
+  schemas:
+
+    Notification:
+      type: object
+      properties:
+        to:
+          type: string
+        from:
+          type: string
+        message:
+          type: string
+        subject:
+          type: string
+
+    Notifications:
+        type: array
+        items:
+          $ref: '#/components/schemas/Notification'

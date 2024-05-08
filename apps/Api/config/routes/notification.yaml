@@ -2,3 +2,8 @@ send_single_email_notification:
   path: /notifications/email/send
   methods: POST
   controller: Apps\Api\src\Controller\Notification\SendSingleEmailNotificationController
+
+send_batch_email_notifications:
+  path: /notifications/email/batch-send
+  methods: POST
+  controller: Apps\Api\src\Controller\Notification\SendBatchEmailNotificationsController
