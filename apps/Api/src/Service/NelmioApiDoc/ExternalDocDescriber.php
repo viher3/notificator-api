@@ -1,12 +1,12 @@
 <?php
 
-namespace Apps\Api\src\Controller\NelmioApiDoc;
+namespace Apps\Api\src\Service\NelmioApiDoc;
 
-use OpenApi\Annotations as OA;
 use Nelmio\ApiDocBundle\Describer\DescriberInterface;
-use Symfony\Component\Yaml\Yaml;
 use Nelmio\ApiDocBundle\OpenApiPhp\Util;
+use OpenApi\Annotations as OA;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Yaml\Yaml;
 
 class ExternalDocDescriber implements DescriberInterface
 {

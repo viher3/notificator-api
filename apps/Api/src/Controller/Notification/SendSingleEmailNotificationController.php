@@ -3,7 +3,7 @@
 namespace Apps\Api\src\Controller\Notification;
 
 use App\Notification\Domain\EmailNotification;
-use App\Notificator\Application\Email\EmailNotificator;
+use App\Notificator\Application\SendSingleEmail\SendSingleEmailNotificator;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class SendEmailNotificationController extends AbstractController
+class SendSingleEmailNotificationController extends AbstractController
 {
     public function __construct(
-        private EmailNotificator $emailNotificator
+        private SendSingleEmailNotificator $emailNotificator
     )
     {
     }

@@ -24,6 +24,6 @@ services:
         resource: '../apps/Api'
 
     nelmio_api_doc.describers.config:
-        class: Apps\Api\src\Controller\NelmioApiDoc\ExternalDocDescriber
+        class: Apps\Api\src\Service\NelmioApiDoc\ExternalDocDescriber
         tags:
             - { name: nelmio_api_doc.describer, priority: 1000 }

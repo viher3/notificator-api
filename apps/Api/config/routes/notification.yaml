@@ -1,4 +1,4 @@
-send_email_notification:
+send_single_email_notification:
   path: /notifications/email/send
   methods: POST
-  controller: Apps\Api\src\Controller\Notification\SendEmailNotificationController
+  controller: Apps\Api\src\Controller\Notification\SendSingleEmailNotificationController

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Notificator\Application\Email;
+namespace App\Notificator\Application\SendSingleEmail;
 
 use App\Notification\Domain\Notification;
 use App\Notificator\Domain\Notificator;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
-final class EmailNotificator implements Notificator
+final class SendSingleEmailNotificator implements Notificator
 {
     public function __construct(
         private MailerInterface $mailer
