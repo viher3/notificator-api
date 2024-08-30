@@ -2,8 +2,9 @@
 
 namespace Apps\Api\src\Controller\Notification;
 
-use App\Notificator\Application\SendBatchEmails\SendBatchEmailsCommand;
-use App\Notificator\Application\SendBatchEmails\SendBatchEmailsHandler;
+use App\Core\Infrastructure\Time\SystemClock;
+use App\Notification\Application\SendBatchEmails\SendBatchEmailsCommand;
+use App\Notification\Application\SendBatchEmails\SendBatchEmailsHandler;
 use Assert\Assert;
 use Assert\AssertionFailedException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,7 +36,10 @@ class SendBatchEmailNotificationsController extends AbstractController
                 ->verifyNow();
 
             $this->sendBatchEmailsHandler->execute(
-                new SendBatchEmailsCommand($body)
+                new SendBatchEmailsCommand(
+                    notifications: $body,
+                    createdAt: (new SystemClock())->__toString()
+                )
             );
 
             return new JsonResponse([], Response::HTTP_OK);

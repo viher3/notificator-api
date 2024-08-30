@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notificator\Domain;
+namespace App\Notification\Domain\Service;
 
 use App\Notification\Domain\Notification;
 

@@ -2,7 +2,13 @@
 
 namespace App\Notification\Domain;
 
-abstract class Notification
+use App\Core\Domain\Aggregate\AggregateRoot;
+use App\Core\Domain\Time\Clock;
+use App\Notification\Domain\Event\NotificationCreated;
+use App\Notification\Domain\ValueObject\NotificationId;
+use Ramsey\Uuid\Uuid;
+
+abstract class Notification extends AggregateRoot
 {
     private array $to;
 
@@ -10,11 +16,18 @@ abstract class Notification
         array|string $to,
         private string $from,
         private string $message,
+        private Clock $createdAt,
         private string $subject = '',
         private array $options = []
     )
     {
         $this->to = !is_array($to) ? [$to] : $to;
+
+        $this->record(new NotificationCreated(
+            aggregateId: NotificationId::random(),
+            notification: $this,
+            occurredOn: $this->createdAt->toDateTimeString()
+        ));
     }
 
     public function getTo(): array
@@ -40,5 +53,10 @@ abstract class Notification
     public function getOptions(): array
     {
         return $this->options;
+    }
+
+    public function getCreatedAt(): Clock
+    {
+        return $this->createdAt;
     }
 }

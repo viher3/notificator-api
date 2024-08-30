@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notificator\Application\SendSingleEmail;
+namespace App\Notification\Application\SendSingleEmail;
 
 use App\Core\Application\Command\Command;
 
@@ -10,6 +10,7 @@ readonly class SendSingleEmailCommand implements Command
         public string $from,
         public string $message,
         public array|string $recipients,
+        public string $createdAt,
         public ?string $subject = null,
     )
     {

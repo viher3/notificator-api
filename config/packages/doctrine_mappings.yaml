@@ -1,0 +1,10 @@
+doctrine:
+    orm:
+        mappings:
+
+            Notification:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Notification/Infrastructure/Persistence/Doctrine/Definition'
+                prefix: 'App\Notification\Domain'
+                alias: Notification
