@@ -5,7 +5,6 @@ namespace Apps\Api\src\Controller\Notification;
 use App\Notificator\Application\SendSingleEmail\SendSingleEmailCommand;
 use App\Notificator\Application\SendSingleEmail\SendSingleEmailHandler;
 use Assert\Assert;
-use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;

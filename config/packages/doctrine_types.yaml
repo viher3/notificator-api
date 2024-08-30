@@ -1,0 +1,4 @@
+doctrine:
+  dbal:
+    types:
+      clock: App\Core\Infrastructure\Persistence\Doctrine\Type\DoctrineSystemClock
