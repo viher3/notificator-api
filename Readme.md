@@ -16,5 +16,5 @@ Send notifications using an API.
 
 ### Comming soon features
 
-- Notification logs.
+- Commit notifications before sending.
 - Manage provider channels *(email senders, telegram channels, etc)*.
