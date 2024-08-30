@@ -6,18 +6,19 @@ use App\Core\Domain\Time\Clock;
 use App\Core\Domain\Aggregate\AggregateRoot;
 use App\Notification\Domain\ValueObject\NotificationLogId;
 
-class NotificationLog implements AggregateRoot
+class NotificationLog extends AggregateRoot
 {
     private string $id;
 
     public function __construct(
-        NotificationLogId $id,
+        NotificationLogId        $id,
         private readonly string  $to,
         private readonly string  $from,
         private readonly string  $message,
+        private readonly Clock   $createdAt,
         private readonly ?string $subject = null,
         private readonly ?string $options = null,
-        private Clock $createdAt
+
     )
     {
         $this->id = $id->value();

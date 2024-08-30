@@ -2,8 +2,9 @@
 
 namespace Apps\Api\src\Controller\Notification;
 
-use App\Notificator\Application\SendSingleEmail\SendSingleEmailCommand;
-use App\Notificator\Application\SendSingleEmail\SendSingleEmailHandler;
+use App\Core\Infrastructure\Time\SystemClock;
+use App\Notification\Application\SendSingleEmail\SendSingleEmailCommand;
+use App\Notification\Application\SendSingleEmail\SendSingleEmailHandler;
 use Assert\Assert;
 use Assert\AssertionFailedException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,6 +41,7 @@ class SendSingleEmailNotificationController extends AbstractController
                     from: $from,
                     message: $message,
                     recipients: $to,
+                    createdAt: (new SystemClock())->__toString(),
                     subject: $subject
                 )
             );

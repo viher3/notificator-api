@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Notificator\Domain\Service;
+namespace App\Notification\Domain\Service\Email;
 
 use App\Notification\Domain\NotificationCollection;
-use App\Notificator\Domain\BatchNotificator;
+use App\Notification\Domain\Service\BatchNotificator;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 

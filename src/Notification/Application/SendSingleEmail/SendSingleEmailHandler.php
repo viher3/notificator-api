@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Notificator\Application\SendSingleEmail;
+namespace App\Notification\Application\SendSingleEmail;
 
 use App\Core\Application\Command\CommandHandler;
+use App\Core\Domain\Time\DomainClock;
 use App\Notification\Domain\EmailNotification;
-use App\Notificator\Domain\Service\SendSingleEmailNotificator;
+use App\Notification\Domain\Service\Email\SendSingleEmailNotificator;
 
 final class SendSingleEmailHandler implements CommandHandler
 {
@@ -21,6 +22,7 @@ final class SendSingleEmailHandler implements CommandHandler
                 to: $command->recipients,
                 from: $command->from,
                 message: $command->message,
+                createdAt: DomainClock::fromString($command->createdAt),
                 subject: $command->subject
             )
         );

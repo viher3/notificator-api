@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Notificator\Application\SendBatchEmails;
+namespace App\Notification\Application\SendBatchEmails;
 
 use App\Core\Application\Command\CommandHandler;
+use App\Core\Domain\Time\DomainClock;
 use App\Notification\Domain\EmailNotification;
 use App\Notification\Domain\NotificationCollection;
-use App\Notificator\Domain\Service\SendBatchEmailNotificator;
+use App\Notification\Domain\Service\Email\SendBatchEmailNotificator;
 
 final class SendBatchEmailsHandler implements CommandHandler
 {
@@ -25,6 +26,7 @@ final class SendBatchEmailsHandler implements CommandHandler
                     to: $notification['to'] ?? null,
                     from: $notification['from'] ?? null,
                     message: $notification['message'] ?? null,
+                    createdAt: DomainClock::fromString($sendBatchEmailsCommand->createdAt),
                     subject: $notification['subject'] ?? ''
                 )
             );
