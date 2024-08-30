@@ -4,6 +4,7 @@ namespace App\Notification\Domain;
 
 use App\Core\Domain\Time\Clock;
 use App\Core\Domain\Aggregate\AggregateRoot;
+use App\Core\Domain\ValueObject\Uuid;
 use App\Notification\Domain\ValueObject\NotificationLogId;
 
 class NotificationLog extends AggregateRoot
@@ -22,6 +23,19 @@ class NotificationLog extends AggregateRoot
     )
     {
         $this->id = $id->value();
+    }
+
+    public static function fromNotification(Notification $notification) : self
+    {
+        return new self(
+            id: NotificationLogId::random(),
+            to: implode(",",$notification->getTo()),
+            from: $notification->getFrom(),
+            message: $notification->getMessage(),
+            createdAt: $notification->getCreatedAt(),
+            subject: $notification->getSubject(),
+            options: $notification->getOptions() ? json_encode($notification->getOptions()) : null
+        );
     }
 
     public function getId(): string

@@ -19,6 +19,12 @@ framework:
             event.bus:
                 middleware:
 
+        # Route your messages to the transports
+        routing:
+
+            'App\Notification\Domain\Event\NotificationCreated': sync
+
+
 # when@test:
 #    framework:
 #        messenger:
