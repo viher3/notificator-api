@@ -2,6 +2,9 @@
 
 namespace App\Core\Application\Query;
 
-interface SearchResponse extends CountResponse, QueryResponse
+use App\Core\Domain\Bus\Query\QueryResponse;
+
+interface SearchResponse extends QueryResponse
 {
+    public function getTotal() : int;
 }

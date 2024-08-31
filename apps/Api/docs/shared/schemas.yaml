@@ -1,0 +1,23 @@
+components:
+  schemas:
+
+    FiltersParameter:
+      type: string
+      example: '[{"field":"name","operator":"like","value":"Digi"}]'
+
+    PageParameter:
+      type: integer
+      example: 1
+
+    ItemsPerPageParameter:
+      type: integer
+      example: 12
+
+    OrderByParameter:
+      type: string
+      example: ''
+
+    OrderDirection:
+      type: string
+      example: ''
+

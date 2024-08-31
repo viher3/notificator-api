@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\Application\Query;
 
+use App\Core\Domain\Bus\Query\Query;
+
 class DetailQuery implements Query
 {
     public function __construct(

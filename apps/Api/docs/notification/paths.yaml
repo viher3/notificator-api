@@ -1,8 +1,8 @@
 paths:
 
-  /notifications/email/send:
+  /notifications/send:
     post:
-      summary: Send simple email notification
+      summary: Send simple notification
       tags:
         - 📧 Notifications
       requestBody:
@@ -17,9 +17,9 @@ paths:
         '500':
           description: Internal server error
 
-  /notifications/email/batch-send:
+  /notifications/send/batch:
     post:
-      summary: Send batch email notifications
+      summary: Send batch notifications
       tags:
         - 📧 Notifications
       requestBody:

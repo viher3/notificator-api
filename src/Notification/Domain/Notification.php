@@ -4,30 +4,44 @@ namespace App\Notification\Domain;
 
 use App\Core\Domain\Aggregate\AggregateRoot;
 use App\Core\Domain\Time\Clock;
-use App\Notification\Domain\Event\NotificationCreated;
+use App\Notification\Domain\Event\NotificationSent;
+use App\Notification\Domain\Service\Notificator\Notificator;
 use App\Notification\Domain\ValueObject\NotificationId;
-use Ramsey\Uuid\Uuid;
 
 abstract class Notification extends AggregateRoot
 {
     private array $to;
 
     public function __construct(
+        private string $type,
         array|string $to,
         private string $from,
         private string $message,
         private Clock $createdAt,
         private string $subject = '',
-        private array $options = []
+        private array $options = [],
+        private bool $isSendConfirmationRequired = false
     )
     {
         $this->to = !is_array($to) ? [$to] : $to;
+    }
 
-        $this->record(new NotificationCreated(
-            aggregateId: NotificationId::random(),
-            notification: $this,
-            occurredOn: $this->createdAt->toDateTimeString()
-        ));
+    /**
+     * @throws \Exception
+     */
+    public function send(Notificator $notificator) : void
+    {
+        try{
+            $notificator->send($this);
+
+            $this->record(new NotificationSent(
+                aggregateId: NotificationId::random(),
+                notification: $this,
+                occurredOn: $this->createdAt->toDateTimeString()
+            ));
+        }catch (\Exception $e){
+            throw $e;
+        }
     }
 
     public function getTo(): array
@@ -58,5 +72,29 @@ abstract class Notification extends AggregateRoot
     public function getCreatedAt(): Clock
     {
         return $this->createdAt;
+    }
+
+    public function isSendConfirmationRequired(): bool
+    {
+        return $this->isSendConfirmationRequired;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function serialize() : array
+    {
+        return [
+            'type' => $this->type,
+            'to' => $this->to,
+            'from' => $this->from,
+            'subject' => $this->subject,
+            'message' => $this->message,
+            'options' => $this->options,
+            'createdAt' => $this->createdAt,
+            'isSendConfirmationRequired' => $this->isSendConfirmationRequired,
+        ];
     }
 }

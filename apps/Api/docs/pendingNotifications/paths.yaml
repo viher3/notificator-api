@@ -1,0 +1,61 @@
+paths:
+
+  /pending-notifications:
+    get:
+      summary: Search pending notifications
+      tags:
+        - 📧 Pending notifications
+      parameters:
+        - name: filters
+          in: query
+          schema:
+            $ref: '#/components/schemas/FiltersParameter'
+
+        - name: page
+          in: query
+          schema:
+            $ref: '#/components/schemas/PageParameter'
+
+        - name: size
+          in: query
+          schema:
+            $ref: '#/components/schemas/ItemsPerPageParameter'
+
+        - name: orderBy
+          in: query
+          schema:
+            $ref: '#/components/schemas/OrderByParameter'
+
+        - name: orderDirection
+          in: query
+          schema:
+            $ref: '#/components/schemas/OrderDirection'
+
+      responses:
+        '200':
+          description: Ok
+        '500':
+          description: Internal server error
+
+  /pending-notifications/{id}/send:
+    post:
+      summary: Send pending notification
+      tags:
+        - 📧 Pending notifications
+
+      parameters:
+        - name: id
+          in: path
+          description: Pending notification ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+
+      responses:
+        '200':
+          description: Ok
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error

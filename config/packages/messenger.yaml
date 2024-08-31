@@ -22,7 +22,7 @@ framework:
         # Route your messages to the transports
         routing:
 
-            'App\Notification\Domain\Event\NotificationCreated': sync
+            'App\Notification\Domain\Event\NotificationSent': sync
 
 
 # when@test:
