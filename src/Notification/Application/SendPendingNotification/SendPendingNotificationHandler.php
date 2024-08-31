@@ -3,6 +3,7 @@
 namespace App\Notification\Application\SendPendingNotification;
 
 use App\Core\Domain\Bus\Command\CommandHandler;
+use App\Core\Domain\Bus\Event\EventBus;
 use App\Core\Domain\Time\DomainClock;
 use App\Notification\Domain\Exception\NotFoundPendingNotification;
 use App\Notification\Domain\PendingNotification;
@@ -14,7 +15,8 @@ class SendPendingNotificationHandler implements CommandHandler
 {
     public function __construct(
         private SendPendingNotification $sendPendingNotification,
-        private PendingNotificationRepository $pendingNotificationRepository
+        private PendingNotificationRepository $pendingNotificationRepository,
+        private EventBus $eventBus
     )
     {
     }
@@ -41,6 +43,7 @@ class SendPendingNotificationHandler implements CommandHandler
         );
 
         $this->pendingNotificationRepository->save($pendingNotification);
+        $this->eventBus->publish(...$pendingNotification->pullDomainEvents());
 
         return new SendPendingNotificationResponse();
     }
