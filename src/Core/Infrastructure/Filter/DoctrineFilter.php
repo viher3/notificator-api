@@ -5,12 +5,14 @@ namespace App\Core\Infrastructure\Filter;
 use App\Core\Domain\Filter\Filter;
 use App\Core\Domain\Filter\FilterOperator;
 
-class ApiFilter implements Filter
+class DoctrineFilter implements Filter
 {
+    private mixed $handler;
+
     public function __construct(
         private string $field,
         private mixed  $value,
-        private string $operator
+        private string $operator,
     )
     {
         if (!in_array($this->operator, FilterOperator::AVAILABLES)) {
@@ -42,6 +44,17 @@ class ApiFilter implements Filter
     public function getOperator(): string
     {
         return $this->operator;
+    }
+
+    public function setHandler(mixed $handler): void
+    {
+        $this->handler = $handler;
+    }
+
+    public function handle(mixed $query): mixed
+    {
+        $handler = $this->handler;
+        return $handler($query);
     }
 
     public function serialize(): array

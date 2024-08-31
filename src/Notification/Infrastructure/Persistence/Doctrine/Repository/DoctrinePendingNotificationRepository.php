@@ -3,7 +3,7 @@
 namespace App\Notification\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Core\Domain\Filter\FilterCollection;
-use App\Core\Infrastructure\Filter\ApiFilterCollection;
+use App\Core\Infrastructure\Filter\DoctrineFilterCollection;
 use App\Core\Infrastructure\Persistence\Doctrine\DoctrineRepository;
 use App\Core\Infrastructure\Persistence\Doctrine\Services\Search\QueryBuilderSearch;
 use App\Notification\Domain\PendingNotification;
@@ -31,7 +31,7 @@ class DoctrinePendingNotificationRepository extends DoctrineRepository implement
     }
 
     /**
-     * @param ApiFilterCollection $filters
+     * @param DoctrineFilterCollection $filters
      * @param int $page
      * @param int $perPage
      * @param string|null $orderBy
@@ -57,13 +57,11 @@ class DoctrinePendingNotificationRepository extends DoctrineRepository implement
             orderDirection: $orderDirection
         );
 
-        // TODO: handle filters
-
         return $qb->getQuery()->getResult();
     }
 
     /**
-     * @param ApiFilterCollection $filters
+     * @param DoctrineFilterCollection $filters
      * @return int
      */
     public function searchCount(FilterCollection $filters) : int

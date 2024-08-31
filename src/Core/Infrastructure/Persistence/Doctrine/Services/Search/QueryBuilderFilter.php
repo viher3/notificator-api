@@ -2,15 +2,15 @@
 
 namespace App\Core\Infrastructure\Persistence\Doctrine\Services\Search;
 
+use App\Core\Domain\Filter\Filter;
 use App\Core\Domain\Filter\FilterOperator;
-use App\Core\Infrastructure\Filter\ApiFilter;
 use Doctrine\ORM\QueryBuilder;
 
 class QueryBuilderFilter
 {
     public function applyFilter(
         QueryBuilder $qb,
-        ApiFilter $filter,
+        Filter $filter,
         string $filterAlias
     ): QueryBuilder {
         $field = $filter->getField();
@@ -27,6 +27,7 @@ class QueryBuilderFilter
             FilterOperator::IN => $qb->andWhere($fieldWithAlias . ' IN ( :' . $fieldParamName . ')')->setParameter($fieldParamName, $value),
             FilterOperator::NULL =>  $qb->andWhere($fieldWithAlias . ' IS NULL'),
             FilterOperator::NOT_NULL =>  $qb->andWhere($fieldWithAlias . ' IS NOT NULL'),
+            FilterOperator::CUSTOM_EXPRESSION =>  $filter->handle($qb),
             default => $qb
         };
 

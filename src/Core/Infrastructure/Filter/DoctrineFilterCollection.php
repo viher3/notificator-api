@@ -6,7 +6,7 @@ use App\Core\Domain\Filter\Filter;
 use App\Core\Domain\Filter\FilterCollection;
 use Ramsey\Collection\AbstractCollection;
 
-final class ApiFilterCollection extends AbstractCollection implements FilterCollection
+final class DoctrineFilterCollection extends AbstractCollection implements FilterCollection
 {
     /**
      * @param array $filters
@@ -17,7 +17,7 @@ final class ApiFilterCollection extends AbstractCollection implements FilterColl
         $apiFilters = [];
 
         foreach ($filters as $filter) {
-            $apiFilters[] = new ApiFilter(
+            $apiFilters[] = new DoctrineFilter(
                 $filter['field'],
                 $filter['value'],
                 $filter['operator']
@@ -45,7 +45,7 @@ final class ApiFilterCollection extends AbstractCollection implements FilterColl
     {
         $response = [];
 
-        /** @var ApiFilter $apiFilter */
+        /** @var DoctrineFilter $apiFilter */
         foreach ($this->data as $apiFilter) {
             $response[] = $apiFilter->serialize();
         }
@@ -74,6 +74,6 @@ final class ApiFilterCollection extends AbstractCollection implements FilterColl
      */
     public function getType(): string
     {
-        return ApiFilter::class;
+        return DoctrineFilter::class;
     }
 }

@@ -72,6 +72,6 @@ final class DomainFilterCollection extends AbstractCollection implements FilterC
      */
     public function getType(): string
     {
-        return DomainFilter::class;
+        return Filter::class;
     }
 }

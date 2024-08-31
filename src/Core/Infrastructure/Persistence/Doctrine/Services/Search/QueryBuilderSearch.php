@@ -3,14 +3,14 @@
 namespace App\Core\Infrastructure\Persistence\Doctrine\Services\Search;
 
 use App\Core\Domain\Filter\FilterCollection;
-use App\Core\Infrastructure\Filter\ApiFilterCollection;
+use App\Core\Infrastructure\Filter\DoctrineFilterCollection;
 use Doctrine\ORM\QueryBuilder;
 
 class QueryBuilderSearch
 {
     /**
      * @param QueryBuilder $qb
-     * @param ApiFilterCollection $filters
+     * @param DoctrineFilterCollection $filters
      * @param int $page
      * @param int $perPage
      * @param string|null $orderBy
@@ -32,7 +32,7 @@ class QueryBuilderSearch
 
     /**
      * @param QueryBuilder $qb
-     * @param ApiFilterCollection $filters
+     * @param DoctrineFilterCollection $filters
      * @param int $page
      * @param int $perPage
      * @param string|null $orderBy
@@ -71,7 +71,7 @@ class QueryBuilderSearch
 
     /**
      * @param QueryBuilder $qb
-     * @param ApiFilterCollection $filters
+     * @param DoctrineFilterCollection $filters
      * @return int
      */
     public function searchCount(

@@ -18,7 +18,14 @@ class PendingNotificationCollection extends AbstractCollection
         /** @var PendingNotification $pendingNotification */
         foreach($this->data as $pendingNotification){
             $response[] = [
-                'type' => $pendingNotification->getType()
+                'id' => $pendingNotification->getId(),
+                'type' => $pendingNotification->getType(),
+                'message' => $pendingNotification->getMessage(),
+                'to' => $pendingNotification->getTo(),
+                'from' => $pendingNotification->getFrom(),
+                'subject' => $pendingNotification->getSubject(),
+                'createdAt' => $pendingNotification->getCreatedAt()->toDateTimeString(),
+                'options' => $pendingNotification->getOptions(),
             ];
         }
 

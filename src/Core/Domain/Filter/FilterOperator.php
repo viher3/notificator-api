@@ -4,6 +4,7 @@ namespace App\Core\Domain\Filter;
 
 interface FilterOperator
 {
+    public const CUSTOM_EXPRESSION = 'customExpression';
     public const EMPTY = '';
     public const EQUALS = 'eq';
     public const NOT_EQUALS = 'neq';
@@ -22,6 +23,7 @@ interface FilterOperator
         self::IN,
         self::NOT_NULL,
         self::NOT_EQUALS,
-        self::EMPTY
+        self::EMPTY,
+        self::CUSTOM_EXPRESSION
     ];
 }

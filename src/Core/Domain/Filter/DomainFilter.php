@@ -4,6 +4,8 @@ namespace App\Core\Domain\Filter;
 
 class DomainFilter implements Filter
 {
+    private mixed $handler;
+
     public function __construct(
         private string $field,
         private string  $value,
@@ -46,5 +48,16 @@ class DomainFilter implements Filter
             'value' => $this->value,
             'operator' => $this->operator
         ];
+    }
+
+    public function setHandler(mixed $handler): void
+    {
+        $this->handler = $handler;
+    }
+
+    public function handle(mixed $query): mixed
+    {
+        $handler = $this->handler;
+        return $handler($query);
     }
 }

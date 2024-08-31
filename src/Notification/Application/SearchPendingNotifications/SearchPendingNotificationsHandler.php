@@ -5,14 +5,15 @@ namespace App\Notification\Application\SearchPendingNotifications;
 use App\Core\Domain\Bus\Query\QueryHandler;
 use App\Core\Domain\Bus\Query\QueryResponse;
 use App\Core\Domain\Filter\DomainFilterCollection;
-use App\Notification\Domain\NotificationCollection;
 use App\Notification\Domain\PendingNotificationCollection;
 use App\Notification\Domain\Repository\PendingNotificationRepository;
+use App\Notification\Domain\Filter\PendingNotification\SentAtIsNullFilter;
 
 class SearchPendingNotificationsHandler implements QueryHandler
 {
     public function __construct(
-        private PendingNotificationRepository $pendingNotificationRepository
+        private PendingNotificationRepository $pendingNotificationRepository,
+        private SentAtIsNullFilter $sentAtIsNullFilter
     )
     {
     }
@@ -20,6 +21,7 @@ class SearchPendingNotificationsHandler implements QueryHandler
     public function __invoke(SearchPendingNotificationsQuery $query) : QueryResponse
     {
         $filters = DomainFilterCollection::fromArray($query->getFilters()->toArray());
+        $filters->add($this->sentAtIsNullFilter->create());
 
         $pendingNotifications = $this->pendingNotificationRepository->search(
             filters: $filters,
