@@ -36,3 +36,26 @@ paths:
           description: Ok
         '500':
           description: Internal server error
+
+  /pending-notifications/{id}/send:
+    post:
+      summary: Send pending notification
+      tags:
+        - 📧 Pending notifications
+
+      parameters:
+        - name: id
+          in: path
+          description: Pending notification ID
+          required: true
+          schema:
+            type: string
+            format: uuid
+
+      responses:
+        '200':
+          description: Ok
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
