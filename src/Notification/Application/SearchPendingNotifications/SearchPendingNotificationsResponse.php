@@ -27,7 +27,7 @@ class SearchPendingNotificationsResponse implements SearchResponse
         return $this->pendingNotifications;
     }
 
-    public function getTotalNotifications(): int
+    public function getTotal(): int
     {
         return $this->totalPendingNotifications;
     }

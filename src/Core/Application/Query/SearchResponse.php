@@ -6,4 +6,5 @@ use App\Core\Domain\Bus\Query\QueryResponse;
 
 interface SearchResponse extends QueryResponse
 {
+    public function getTotal() : int;
 }

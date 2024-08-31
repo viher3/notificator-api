@@ -2,7 +2,6 @@
 
 namespace Apps\Api\src\Controller\PendingNotifications;
 
-use App\Core\Infrastructure\Filter\ApiFilterCollection;
 use App\Core\Infrastructure\Request\SearchRequest;
 use App\Core\Infrastructure\Response\SearchResponse;
 use App\Notification\Application\SearchPendingNotifications\SearchPendingNotificationsQuery;

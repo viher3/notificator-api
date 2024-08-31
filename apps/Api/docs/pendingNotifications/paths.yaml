@@ -1,0 +1,38 @@
+paths:
+
+  /pending-notifications:
+    get:
+      summary: Search pending notifications
+      tags:
+        - 📧 Pending notifications
+      parameters:
+        - name: filters
+          in: query
+          schema:
+            $ref: '#/components/schemas/FiltersParameter'
+
+        - name: page
+          in: query
+          schema:
+            $ref: '#/components/schemas/PageParameter'
+
+        - name: size
+          in: query
+          schema:
+            $ref: '#/components/schemas/ItemsPerPageParameter'
+
+        - name: orderBy
+          in: query
+          schema:
+            $ref: '#/components/schemas/OrderByParameter'
+
+        - name: orderDirection
+          in: query
+          schema:
+            $ref: '#/components/schemas/OrderDirection'
+
+      responses:
+        '200':
+          description: Ok
+        '500':
+          description: Internal server error
