@@ -74,6 +74,6 @@ final class DoctrineFilterCollection extends AbstractCollection implements Filte
      */
     public function getType(): string
     {
-        return DoctrineFilter::class;
+        return Filter::class;
     }
 }

@@ -37,6 +37,17 @@ interface Filter
     public function setHandler(mixed $handler): void;
 
     /**
+     * @param string $alias
+     * @return void
+     */
+    public function setQueryAlias(string $alias): void;
+
+    /**
+     * @return string|null
+     */
+    public function getQueryAlias(): ?string;
+
+    /**
      * @param mixed $query
      * @return mixed
      */

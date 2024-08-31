@@ -8,6 +8,7 @@ use App\Core\Domain\Filter\FilterOperator;
 class DoctrineFilter implements Filter
 {
     private mixed $handler;
+    private ?string $queryAlias = null;
 
     public function __construct(
         private string $field,
@@ -64,5 +65,15 @@ class DoctrineFilter implements Filter
             'value' => $this->value,
             'operator' => $this->operator
         ];
+    }
+
+    public function setQueryAlias(string $alias): void
+    {
+        $this->queryAlias = $alias;
+    }
+
+    public function getQueryAlias(): ?string
+    {
+        return $this->queryAlias;
     }
 }

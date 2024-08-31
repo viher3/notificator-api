@@ -2,6 +2,7 @@
 
 namespace App\Core\Infrastructure\Persistence\Doctrine\Services\Search;
 
+use App\Core\Domain\Filter\Filter;
 use App\Core\Domain\Filter\FilterCollection;
 use App\Core\Infrastructure\Filter\DoctrineFilterCollection;
 use Doctrine\ORM\QueryBuilder;
@@ -49,11 +50,12 @@ class QueryBuilderSearch
         ?string $orderDirection = null,
         ?string $qbAlias = null
     ): QueryBuilder {
-        $qbAlias = $qbAlias ?: 'u';
+        $qbAlias = $qbAlias ?: $qb->getRootAliases()[0];
 
+        /** @var Filter $filter */
         foreach ($filters as $filter) {
             $qbFilterService = new QueryBuilderFilter();
-            $qbFilterService->applyFilter($qb, $filter, $qbAlias);
+            $qbFilterService->applyFilter($qb, $filter, $filter->getQueryAlias() ?? $qbAlias);
         }
 
         if ($orderBy && $orderDirection) {

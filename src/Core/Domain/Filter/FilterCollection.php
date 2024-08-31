@@ -11,4 +11,9 @@ interface FilterCollection extends CollectionInterface
      * @return Filter|null
      */
     public function findByField(string $field) : ?Filter;
+
+    /**
+     * @return array
+     */
+    public function serialize() : array;
 }

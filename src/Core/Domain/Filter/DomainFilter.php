@@ -5,11 +5,12 @@ namespace App\Core\Domain\Filter;
 class DomainFilter implements Filter
 {
     private mixed $handler;
+    private ?string $queryAlias = null;
 
     public function __construct(
         private string $field,
-        private string  $value,
-        private string $operator
+        private string $value,
+        private string $operator,
     )
     {
         if (!in_array($this->operator, FilterOperator::AVAILABLES)) {
@@ -59,5 +60,15 @@ class DomainFilter implements Filter
     {
         $handler = $this->handler;
         return $handler($query);
+    }
+
+    public function setQueryAlias(string $alias): void
+    {
+        $this->queryAlias = $alias;
+    }
+
+    public function getQueryAlias(): ?string
+    {
+        return $this->queryAlias;
     }
 }

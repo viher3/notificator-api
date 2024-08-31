@@ -20,7 +20,7 @@ class SearchPendingNotificationsHandler implements QueryHandler
 
     public function __invoke(SearchPendingNotificationsQuery $query) : QueryResponse
     {
-        $filters = DomainFilterCollection::fromArray($query->getFilters()->toArray());
+        $filters = DomainFilterCollection::fromArray($query->getFilters()->serialize());
         $filters->add($this->sentAtIsNullFilter->create());
 
         $pendingNotifications = $this->pendingNotificationRepository->search(
