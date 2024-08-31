@@ -2,20 +2,22 @@
 
 namespace App\Core\Application\Query;
 
+use App\Core\Domain\Filter\FilterCollection;
+
 abstract class SearchQuery
 {
     public const DEFAULT_PAGE = 1;
     public const DEFAULT_ITEMS_PER_PAGE = 10;
 
     /**
-     * @param array $filters
+     * @param FilterCollection $filters
      * @param integer|null $page
      * @param integer|null $itemsPerPage
      * @param string|null $orderBy
      * @param string|null $orderDirection
      */
     public function __construct(
-        protected array $filters = [],
+        protected FilterCollection $filters,
         protected ?int $page = self::DEFAULT_PAGE,
         protected ?int $itemsPerPage = self::DEFAULT_ITEMS_PER_PAGE,
         protected ?string $orderBy = null,
@@ -42,9 +44,9 @@ abstract class SearchQuery
     }
 
     /**
-     * @return array
+     * @return FilterCollection
      */
-    public function getFilters(): array
+    public function getFilters(): FilterCollection
     {
         return $this->filters;
     }

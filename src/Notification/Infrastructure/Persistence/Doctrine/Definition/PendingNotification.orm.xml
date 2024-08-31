@@ -9,6 +9,7 @@
         <id name="id" type="string" column="id" length="36">
             <generator strategy="NONE"/>
         </id>
+        <field name="type" column="type" />
         <field name="to" column="receiver" type="text" />
         <field name="from" column="transmitter" />
         <field name="message" column="message" type="text" />

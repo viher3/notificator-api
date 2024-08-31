@@ -4,12 +4,12 @@ namespace App\Notification\Domain\Service\PendingNotification;
 
 use App\Notification\Domain\Notification;
 use App\Notification\Domain\PendingNotification;
-use App\Notification\Domain\Repository\NotificationPendingRepository;
+use App\Notification\Domain\Repository\PendingNotificationRepository;
 
 class CreatePendingNotification
 {
     public function __construct(
-        private NotificationPendingRepository $notificationPendingRepository
+        private PendingNotificationRepository $notificationPendingRepository
     )
     {
     }

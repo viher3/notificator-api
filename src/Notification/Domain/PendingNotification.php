@@ -12,6 +12,7 @@ class PendingNotification extends AggregateRoot
 
     public function __construct(
         PendingNotificationId    $id,
+        private readonly string  $type,
         private readonly string  $to,
         private readonly string  $from,
         private readonly string  $message,
@@ -28,6 +29,7 @@ class PendingNotification extends AggregateRoot
     {
         return new self(
             id: PendingNotificationId::random(),
+            type: $notification->getType(),
             to: implode(",", $notification->getTo()),
             from: $notification->getFrom(),
             message: $notification->getMessage(),
@@ -75,5 +77,10 @@ class PendingNotification extends AggregateRoot
     public function getSentAt(): ?Clock
     {
         return $this->sentAt;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
     }
 }

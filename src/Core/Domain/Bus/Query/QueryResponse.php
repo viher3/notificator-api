@@ -6,5 +6,5 @@ namespace App\Core\Domain\Bus\Query;
 
 interface QueryResponse
 {
-//    public function getResult(): array;
+    public function getResult(): array;
 }
