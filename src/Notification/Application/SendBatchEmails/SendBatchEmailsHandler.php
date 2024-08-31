@@ -2,10 +2,10 @@
 
 namespace App\Notification\Application\SendBatchEmails;
 
-use App\Core\Application\Command\CommandHandler;
-use App\Core\Domain\Bus\Event\EventBus;
 use App\Core\Domain\Time\DomainClock;
+use App\Core\Domain\Bus\Event\EventBus;
 use App\Notification\Domain\EmailNotification;
+use App\Core\Application\Command\CommandHandler;
 use App\Notification\Domain\NotificationCollection;
 use App\Notification\Domain\Service\Email\SendSingleEmailNotificator;
 
@@ -31,7 +31,8 @@ final class SendBatchEmailsHandler implements CommandHandler
                 from: $notification['from'] ?? null,
                 message: $notification['message'] ?? null,
                 createdAt: DomainClock::fromString($sendBatchEmailsCommand->createdAt),
-                subject: $notification['subject'] ?? ''
+                subject: $notification['subject'] ?? '',
+                isSendConfirmationRequired: $notification['isSendConfirmationRequired'] ?? false
             );
             $notifications->add($emailNotification);
         }

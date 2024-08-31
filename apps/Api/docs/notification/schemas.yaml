@@ -12,6 +12,8 @@ components:
           type: string
         subject:
           type: string
+        isSendConfirmationRequired:
+          type: bool
 
     Notifications:
         type: array

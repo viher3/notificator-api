@@ -29,6 +29,7 @@ class SendSingleEmailNotificationController extends AbstractController
             $from = $body['from'] ?? null;
             $message = $body['message'] ?? null;
             $subject = $body['subject'] ?? '';
+            $isSendConfirmationRequired = $body['isSendConfirmationRequired'] ?? false;
 
             Assert::lazy()
                 ->that($to)->notEmpty('"to" field is not specified.')
@@ -42,7 +43,8 @@ class SendSingleEmailNotificationController extends AbstractController
                     message: $message,
                     recipients: $to,
                     createdAt: (new SystemClock())->__toString(),
-                    subject: $subject
+                    subject: $subject,
+                    isSendConfirmationRequired: $isSendConfirmationRequired
                 )
             );
 

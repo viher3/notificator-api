@@ -12,6 +12,7 @@ readonly class SendSingleEmailCommand implements Command
         public array|string $recipients,
         public string $createdAt,
         public ?string $subject = null,
+        public bool $isSendConfirmationRequired = false
     )
     {
     }
