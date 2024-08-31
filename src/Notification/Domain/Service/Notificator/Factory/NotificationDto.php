@@ -9,7 +9,6 @@ final class NotificationDto
         public array $to,
         public string $from,
         public string $message,
-        public array $recipients,
         public string $createdAt,
         public ?string $subject = null,
         public array $options = [],

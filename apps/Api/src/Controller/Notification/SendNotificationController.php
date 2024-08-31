@@ -13,10 +13,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class SendSingleEmailNotificationController extends AbstractController
+class SendNotificationController extends AbstractController
 {
     public function __construct(
-        private SendNotificationHandler $sendSingleEmailNotificatorHandler
+        private SendNotificationHandler $sendNotificatorHandler
     )
     {
     }
@@ -46,7 +46,7 @@ class SendSingleEmailNotificationController extends AbstractController
                 ->that($message)->notEmpty('"message" field is not specified.')
                 ->verifyNow();
 
-            $this->sendSingleEmailNotificatorHandler->execute(
+            $this->sendNotificatorHandler->execute(
                 new SendNotificationCommand(
                     type: $type,
                     from: $from,

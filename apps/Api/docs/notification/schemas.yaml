@@ -4,8 +4,14 @@ components:
     Notification:
       type: object
       properties:
-        to:
+        type:
           type: string
+          example: email
+        to:
+          type: array
+          items:
+            type: string
+          description: A list of email addresses
         from:
           type: string
         message:

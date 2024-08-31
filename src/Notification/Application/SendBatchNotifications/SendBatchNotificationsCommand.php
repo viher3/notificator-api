@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Notification\Application\SendBatchEmails;
+namespace App\Notification\Application\SendBatchNotifications;
 
 use App\Core\Application\Command\Command;
 
-readonly class SendBatchEmailsCommand implements Command
+readonly class SendBatchNotificationsCommand implements Command
 {
     public function __construct(
         public array $notifications,

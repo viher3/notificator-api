@@ -30,7 +30,6 @@ final class SendNotificationHandler implements CommandHandler
                 to: $command->recipients,
                 from: $command->from,
                 message: $command->message,
-                recipients: $command->recipients,
                 createdAt: DomainClock::fromString($command->createdAt),
                 subject: $command->subject,
                 isSendConfirmationRequired: $command->isSendConfirmationRequired

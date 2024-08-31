@@ -2,9 +2,9 @@
 
 namespace App\Notification\Domain;
 
-use App\Core\Domain\Bus\Event\DomainEvent;
-use App\Notification\Domain\Service\Notificator\Notificator;
 use Ramsey\Collection\AbstractCollection;
+use App\Core\Domain\Bus\Event\DomainEvent;
+use App\Notification\Domain\Service\Notificator\SendNotificationStrategy;
 
 class NotificationCollection extends AbstractCollection
 {
@@ -14,19 +14,24 @@ class NotificationCollection extends AbstractCollection
     /** @var array<int, string>  */
     private array $errors = [];
 
+    /** @var int $totalSubmittedSuccessfully */
+    private int $totalSubmittedSuccessfully = 0;
+
     /**
-     * @param Notificator $notificator
+     * @param SendNotificationStrategy $sendNotificationStrategy
      * @param int $millisecondsDelayBetweenNotifications
      */
     public function send(
-        Notificator $notificator,
+        SendNotificationStrategy $sendNotificationStrategy,
         int $millisecondsDelayBetweenNotifications = 0
     ) : void
     {
         /** @var Notification $notification */
         foreach($this->data as $notification){
             try{
-                $notification->send($notificator);
+                $notification = $sendNotificationStrategy->execute($notification);
+                $this->domainEvents = array_merge($notification->pullDomainEvents(), $this->domainEvents);
+                $this->totalSubmittedSuccessfully++;
 
                 if($millisecondsDelayBetweenNotifications){
                     sleep($millisecondsDelayBetweenNotifications);
@@ -54,5 +59,10 @@ class NotificationCollection extends AbstractCollection
     public function getErrors(): array
     {
         return $this->errors;
+    }
+
+    public function getTotalSubmittedSuccessfully(): int
+    {
+        return $this->totalSubmittedSuccessfully;
     }
 }
