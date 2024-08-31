@@ -2,18 +2,18 @@
 
 namespace App\Notification\Application\SendBatchEmails;
 
-use App\Core\Domain\Time\DomainClock;
-use App\Core\Domain\Bus\Event\EventBus;
-use App\Notification\Domain\EmailNotification;
 use App\Core\Application\Command\CommandHandler;
+use App\Core\Domain\Bus\Event\EventBus;
+use App\Core\Domain\Time\DomainClock;
+use App\Notification\Domain\EmailNotification;
 use App\Notification\Domain\NotificationCollection;
-use App\Notification\Domain\Service\Email\SendSingleEmailNotificator;
+use App\Notification\Domain\Service\Notificator\Email\SendEmailNotificator;
 
 final class SendBatchEmailsHandler implements CommandHandler
 {
     public function __construct(
-        private SendSingleEmailNotificator $sendSingleEmailNotificator,
-        private EventBus $eventBus
+        private SendEmailNotificator $sendEmailNotificator,
+        private EventBus             $eventBus
     )
     {
     }
@@ -37,7 +37,7 @@ final class SendBatchEmailsHandler implements CommandHandler
             $notifications->add($emailNotification);
         }
 
-        $notifications->send($this->sendSingleEmailNotificator);
+        $notifications->send($this->sendEmailNotificator);
         $this->eventBus->publish(...$notifications->getDomainEvents());
     }
 }

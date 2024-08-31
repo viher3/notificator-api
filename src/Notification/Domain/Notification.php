@@ -5,7 +5,7 @@ namespace App\Notification\Domain;
 use App\Core\Domain\Aggregate\AggregateRoot;
 use App\Core\Domain\Time\Clock;
 use App\Notification\Domain\Event\NotificationSent;
-use App\Notification\Domain\Service\Notificator;
+use App\Notification\Domain\Service\Notificator\Notificator;
 use App\Notification\Domain\ValueObject\NotificationId;
 
 abstract class Notification extends AggregateRoot
@@ -13,6 +13,7 @@ abstract class Notification extends AggregateRoot
     private array $to;
 
     public function __construct(
+        private string $type,
         array|string $to,
         private string $from,
         private string $message,
@@ -78,9 +79,15 @@ abstract class Notification extends AggregateRoot
         return $this->isSendConfirmationRequired;
     }
 
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
     public function serialize() : array
     {
         return [
+            'type' => $this->type,
             'to' => $this->to,
             'from' => $this->from,
             'subject' => $this->subject,

@@ -3,8 +3,8 @@
 namespace App\Notification\Domain;
 
 use App\Core\Domain\Bus\Event\DomainEvent;
+use App\Notification\Domain\Service\Notificator\Notificator;
 use Ramsey\Collection\AbstractCollection;
-use App\Notification\Domain\Service\Notificator;
 
 class NotificationCollection extends AbstractCollection
 {
