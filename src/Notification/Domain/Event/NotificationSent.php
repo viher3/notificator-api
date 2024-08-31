@@ -6,7 +6,7 @@ use App\Core\Domain\Bus\Event\DomainEvent;
 use App\Notification\Domain\Notification;
 use App\Notification\Domain\TextNotification;
 
-class NotificationCreated extends DomainEvent
+class NotificationSent extends DomainEvent
 {
     public function __construct(
         string $aggregateId,
@@ -24,7 +24,7 @@ class NotificationCreated extends DomainEvent
 
     public static function eventName(): string
     {
-        return 'notification.created';
+        return 'notification.sent';
     }
 
     public function toPrimitives(): array
@@ -35,6 +35,7 @@ class NotificationCreated extends DomainEvent
             'message' => $this->notification->getMessage(),
             'subject' => $this->notification->getSubject(),
             'options' => $this->notification->getOptions(),
+            'createdAt' => $this->notification->getCreatedAt()->__toString()
         ];
     }
 
@@ -51,8 +52,9 @@ class NotificationCreated extends DomainEvent
                 to: $body['to'],
                 from: $body['from'],
                 message: $body['message'],
+                createdAt: $body['createdAt'],
                 subject: $body['subject'],
-                options: $body['options'],
+                options: $body['options']
             ),
             eventId: $eventId,
             occurredOn: $occurredOn

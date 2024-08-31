@@ -17,6 +17,9 @@ final class SendSingleEmailHandler implements CommandHandler
     {
     }
 
+    /**
+     * @throws \Exception
+     */
     public function execute(SendSingleEmailCommand $command) : void
     {
         $notification = new EmailNotification(
@@ -27,8 +30,7 @@ final class SendSingleEmailHandler implements CommandHandler
             subject: $command->subject
         );
 
-        $this->sendSingleEmailNotificator->send($notification);
-
+        $notification->send($this->sendSingleEmailNotificator);
         $this->eventBus->publish(...$notification->pullDomainEvents());
     }
 }

@@ -4,6 +4,7 @@ namespace App\Notification\Domain\Service\Email;
 
 use App\Notification\Domain\Notification;
 use App\Notification\Domain\Service\Notificator;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
@@ -15,6 +16,9 @@ final class SendSingleEmailNotificator implements Notificator
     {
     }
 
+    /**
+     * @throws TransportExceptionInterface
+     */
     public function send(Notification $notification): void
     {
         $email = new Email();

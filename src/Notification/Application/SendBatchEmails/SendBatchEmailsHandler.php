@@ -7,20 +7,22 @@ use App\Core\Domain\Bus\Event\EventBus;
 use App\Core\Domain\Time\DomainClock;
 use App\Notification\Domain\EmailNotification;
 use App\Notification\Domain\NotificationCollection;
-use App\Notification\Domain\Service\Email\SendBatchEmailNotificator;
+use App\Notification\Domain\Service\Email\SendSingleEmailNotificator;
 
 final class SendBatchEmailsHandler implements CommandHandler
 {
     public function __construct(
-        private SendBatchEmailNotificator $sendBatchEmailNotificator,
+        private SendSingleEmailNotificator $sendSingleEmailNotificator,
         private EventBus $eventBus
     )
     {
     }
 
+    /**
+     * @throws \Exception
+     */
     public function execute(SendBatchEmailsCommand $sendBatchEmailsCommand) : void
     {
-        $domainEvents = [];
         $notifications = new NotificationCollection();
 
         foreach($sendBatchEmailsCommand->notifications as $notification){
@@ -32,11 +34,9 @@ final class SendBatchEmailsHandler implements CommandHandler
                 subject: $notification['subject'] ?? ''
             );
             $notifications->add($emailNotification);
-            $domainEvents[] = $emailNotification->pullDomainEvents();
         }
 
-        $this->sendBatchEmailNotificator->send($notifications);
-
-        $this->eventBus->publish(...$domainEvents);
+        $notifications->send($this->sendSingleEmailNotificator);
+        $this->eventBus->publish(...$notifications->getDomainEvents());
     }
 }
