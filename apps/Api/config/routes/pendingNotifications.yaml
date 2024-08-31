@@ -1,4 +1,9 @@
-send_single_email_notification:
+pending_notifications:
   path: /pending-notifications
   methods: GET
   controller: Apps\Api\src\Controller\PendingNotifications\SearchPendingNotificationsController
+
+send_pending_notification:
+  path: /pending-notifications/{id}/send
+  methods: POST
+  controller: Apps\Api\src\Controller\PendingNotifications\SendPendingNotificationController

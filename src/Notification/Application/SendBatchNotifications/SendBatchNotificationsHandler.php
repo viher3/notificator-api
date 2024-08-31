@@ -5,9 +5,9 @@ namespace App\Notification\Application\SendBatchNotifications;
 use App\Core\Domain\Bus\Command\CommandHandler;
 use App\Core\Domain\Bus\Event\EventBus;
 use App\Core\Domain\Time\DomainClock;
+use App\Notification\Domain\Factory\NotificationDto;
+use App\Notification\Domain\Factory\NotificationFactory;
 use App\Notification\Domain\NotificationCollection;
-use App\Notification\Domain\Service\Notificator\Factory\NotificationDto;
-use App\Notification\Domain\Service\Notificator\Factory\NotificationFactory;
 use App\Notification\Domain\Service\Notificator\SendNotificationStrategy;
 
 final class SendBatchNotificationsHandler implements CommandHandler

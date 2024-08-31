@@ -3,13 +3,12 @@
 namespace App\Notification\Domain\Service\Notificator;
 
 use App\Notification\Domain\Notification;
-use App\Notification\Domain\Service\Notificator\Email\SendEmailNotificator;
 use App\Notification\Domain\Service\PendingNotification\CreatePendingNotification;
 
 class SendNotificationStrategy
 {
     public function __construct(
-        private SendEmailNotificator $emailNotificator,
+        private NotificatorProviderFactory $notificatorProviderFactory,
         private CreatePendingNotification $createPendingNotification
     )
     {
@@ -20,8 +19,7 @@ class SendNotificationStrategy
      */
     public function execute(Notification $notification) : Notification
     {
-        // TODO: Get required service to send the notification
-        $sendService = $this->emailNotificator;
+        $sendService = $this->notificatorProviderFactory->createForNotification($notification);
 
         if (!$notification->isSendConfirmationRequired()) {
             // Send notification

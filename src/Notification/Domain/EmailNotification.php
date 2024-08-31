@@ -4,7 +4,7 @@ namespace App\Notification\Domain;
 
 use App\Core\Domain\Time\DomainClock;
 use App\Notification\Domain\Enum\NotificationType;
-use App\Notification\Domain\Service\Notificator\Factory\NotificationDto;
+use App\Notification\Domain\Factory\NotificationDto;
 
 class EmailNotification extends Notification
 {

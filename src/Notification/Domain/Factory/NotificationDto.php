@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notification\Domain\Service\Notificator\Factory;
+namespace App\Notification\Domain\Factory;
 
 final class NotificationDto
 {

@@ -8,6 +8,7 @@ use App\Core\Infrastructure\Persistence\Doctrine\DoctrineRepository;
 use App\Core\Infrastructure\Persistence\Doctrine\Services\Search\QueryBuilderSearch;
 use App\Notification\Domain\PendingNotification;
 use App\Notification\Domain\Repository\PendingNotificationRepository;
+use App\Notification\Domain\ValueObject\PendingNotificationId;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -72,5 +73,14 @@ class DoctrinePendingNotificationRepository extends DoctrineRepository implement
             qb: $this->createQueryBuilder('n'),
             filters: $filters
         );
+    }
+
+    /**
+     * @param PendingNotificationId $pendingNotificationId
+     * @return PendingNotification
+     */
+    public function findOne(PendingNotificationId $pendingNotificationId): PendingNotification
+    {
+        return $this->find($pendingNotificationId->value());
     }
 }

@@ -7,8 +7,8 @@ use App\Core\Domain\Bus\Command\CommandResponse;
 use App\Core\Domain\Bus\Command\EmptyCommandResponse;
 use App\Core\Domain\Bus\Event\EventBus;
 use App\Core\Domain\Time\DomainClock;
-use App\Notification\Domain\Service\Notificator\Factory\NotificationDto;
-use App\Notification\Domain\Service\Notificator\Factory\NotificationFactory;
+use App\Notification\Domain\Factory\NotificationDto;
+use App\Notification\Domain\Factory\NotificationFactory;
 use App\Notification\Domain\Service\Notificator\SendNotificationStrategy;
 
 final class SendNotificationHandler implements CommandHandler
