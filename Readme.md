@@ -30,3 +30,8 @@ Send notifications using an API.
 - ❌ Telegram
 - ❌ Slack
 - ❌ Discord
+
+### Comming soon features
+
+- Commit notifications before sending.
+- Manage provider channels *(email senders, telegram channels, etc)*.
