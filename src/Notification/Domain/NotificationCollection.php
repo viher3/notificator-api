@@ -2,9 +2,9 @@
 
 namespace App\Notification\Domain;
 
-use Ramsey\Collection\AbstractCollection;
 use App\Core\Domain\Bus\Event\DomainEvent;
 use App\Notification\Domain\Service\Notificator\SendNotificationStrategy;
+use Ramsey\Collection\AbstractCollection;
 
 class NotificationCollection extends AbstractCollection
 {

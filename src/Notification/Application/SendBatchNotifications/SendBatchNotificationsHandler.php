@@ -2,9 +2,9 @@
 
 namespace App\Notification\Application\SendBatchNotifications;
 
+use App\Core\Domain\Bus\Command\CommandHandler;
 use App\Core\Domain\Bus\Event\EventBus;
 use App\Core\Domain\Time\DomainClock;
-use App\Core\Application\Command\CommandHandler;
 use App\Notification\Domain\NotificationCollection;
 use App\Notification\Domain\Service\Notificator\Factory\NotificationDto;
 use App\Notification\Domain\Service\Notificator\Factory\NotificationFactory;
@@ -23,7 +23,7 @@ final class SendBatchNotificationsHandler implements CommandHandler
     /**
      * @throws \Exception
      */
-    public function execute(SendBatchNotificationsCommand $sendBatchEmailsCommand): SendBatchNotificationsResponse
+    public function __invoke(SendBatchNotificationsCommand $sendBatchEmailsCommand): SendBatchNotificationsResponse
     {
         $notifications = new NotificationCollection();
 

@@ -8,9 +8,17 @@ parameters:
 services:
 
     _instanceof:
-        App\Core\Domain\Bus\Event\EventHandler:
+      App\Core\Domain\Bus\Event\EventHandler:
             tags:
                 - { name: messenger.message_handler, bus: event.bus }
+
+      App\Core\Domain\Bus\Command\CommandHandler:
+            tags:
+                - { name: messenger.message_handler, bus: command.bus }
+
+      App\Core\Domain\Bus\Query\QueryHandler:
+            tags:
+                - { name: messenger.message_handler, bus: query.bus }
 
     # default configuration for services in *this* file
     _defaults:

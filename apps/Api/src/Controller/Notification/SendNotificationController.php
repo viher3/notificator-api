@@ -6,21 +6,15 @@ use App\Core\Infrastructure\Time\SystemClock;
 use App\Notification\Application\SendNotification\SendNotificationCommand;
 use App\Notification\Application\SendNotification\SendNotificationHandler;
 use App\Notification\Domain\Enum\NotificationType;
+use Apps\Api\src\Controller\BaseController;
 use Assert\Assert;
 use Assert\AssertionFailedException;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class SendNotificationController extends AbstractController
+class SendNotificationController extends BaseController
 {
-    public function __construct(
-        private SendNotificationHandler $sendNotificatorHandler
-    )
-    {
-    }
-
     public function __invoke(Request $request): JsonResponse
     {
         $body = json_decode($request->getContent(), true);
@@ -46,7 +40,7 @@ class SendNotificationController extends AbstractController
                 ->that($message)->notEmpty('"message" field is not specified.')
                 ->verifyNow();
 
-            $this->sendNotificatorHandler->execute(
+            $this->dispatch(
                 new SendNotificationCommand(
                     type: $type,
                     from: $from,

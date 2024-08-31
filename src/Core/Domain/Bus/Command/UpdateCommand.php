@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Application\Command;
+namespace App\Core\Domain\Bus\Command;
 
 readonly class UpdateCommand implements Command
 {

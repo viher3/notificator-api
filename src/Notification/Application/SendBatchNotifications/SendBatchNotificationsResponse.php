@@ -2,7 +2,7 @@
 
 namespace App\Notification\Application\SendBatchNotifications;
 
-use App\Core\Application\Command\CommandResponse;
+use App\Core\Domain\Bus\Command\CommandResponse;
 use App\Notification\Domain\NotificationCollection;
 
 readonly class SendBatchNotificationsResponse implements CommandResponse

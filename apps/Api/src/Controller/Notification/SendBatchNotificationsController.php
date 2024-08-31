@@ -6,21 +6,15 @@ use App\Core\Infrastructure\Time\SystemClock;
 use App\Notification\Application\SendBatchNotifications\SendBatchNotificationsCommand;
 use App\Notification\Application\SendBatchNotifications\SendBatchNotificationsHandler;
 use App\Notification\Domain\Enum\NotificationType;
+use Apps\Api\src\Controller\BaseController;
 use Assert\Assert;
 use Assert\AssertionFailedException;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class SendBatchNotificationsController extends AbstractController
+class SendBatchNotificationsController extends BaseController
 {
-    public function __construct(
-        private SendBatchNotificationsHandler $sendBatchNotificationsHandler
-    )
-    {
-    }
-
     public function __invoke(Request $request): JsonResponse
     {
         $body = json_decode($request->getContent(), true) ?? [];
@@ -43,7 +37,7 @@ class SendBatchNotificationsController extends AbstractController
                 ->that($body)->all()->keyExists('isSendConfirmationRequired', 'Required "isSendConfirmationRequired" property not found.')
                 ->verifyNow();
 
-            $response = $this->sendBatchNotificationsHandler->execute(
+            $response = $this->dispatch(
                 new SendBatchNotificationsCommand(
                     notifications: $body,
                     createdAt: (new SystemClock())->__toString()

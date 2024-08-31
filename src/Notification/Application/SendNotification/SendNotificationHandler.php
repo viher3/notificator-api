@@ -2,9 +2,11 @@
 
 namespace App\Notification\Application\SendNotification;
 
-use App\Core\Domain\Time\DomainClock;
+use App\Core\Domain\Bus\Command\CommandHandler;
+use App\Core\Domain\Bus\Command\CommandResponse;
+use App\Core\Domain\Bus\Command\EmptyCommandResponse;
 use App\Core\Domain\Bus\Event\EventBus;
-use App\Core\Application\Command\CommandHandler;
+use App\Core\Domain\Time\DomainClock;
 use App\Notification\Domain\Service\Notificator\Factory\NotificationDto;
 use App\Notification\Domain\Service\Notificator\Factory\NotificationFactory;
 use App\Notification\Domain\Service\Notificator\SendNotificationStrategy;
@@ -22,7 +24,7 @@ final class SendNotificationHandler implements CommandHandler
     /**
      * @throws \Exception
      */
-    public function execute(SendNotificationCommand $command): void
+    public function __invoke(SendNotificationCommand $command): CommandResponse
     {
         $notification = $this->notificationFactory->create(
             new NotificationDto(
@@ -38,5 +40,7 @@ final class SendNotificationHandler implements CommandHandler
 
         $notification = $this->sendNotificationStrategy->execute($notification);
         $this->eventBus->publish(...$notification->pullDomainEvents());
+
+        return new EmptyCommandResponse();
     }
 }

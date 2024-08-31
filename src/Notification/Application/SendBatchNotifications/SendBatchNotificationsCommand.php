@@ -2,7 +2,7 @@
 
 namespace App\Notification\Application\SendBatchNotifications;
 
-use App\Core\Application\Command\Command;
+use App\Core\Domain\Bus\Command\Command;
 
 readonly class SendBatchNotificationsCommand implements Command
 {
