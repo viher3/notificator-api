@@ -8,7 +8,7 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
-final class SendEmailNotificator implements Notificator
+final class EmailNotificator implements Notificator
 {
     public function __construct(
         private MailerInterface $mailer
