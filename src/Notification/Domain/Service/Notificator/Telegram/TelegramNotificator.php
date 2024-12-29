@@ -2,6 +2,7 @@
 
 namespace App\Notification\Domain\Service\Notificator\Telegram;
 
+use App\Notification\Domain\Exception\SendNotificationException;
 use App\Notification\Domain\Notification;
 use App\Notification\Domain\Service\Notificator\Notificator;
 
@@ -11,9 +12,8 @@ class TelegramNotificator implements Notificator
 
     public function send(Notification $notification): void
     {
-        // TODO: validate required options
-        $botToken = $notification->getOptions()['botToken'];
-        $chatId = $notification->getOptions()['chatId'];
+        $botToken = $notification->getFrom();
+        $chatId = $notification->getTo();
         $telegramApiUrl = str_replace('{botToken}', $botToken, self::API_URL);
 
         $data = [
@@ -33,7 +33,9 @@ class TelegramNotificator implements Notificator
             $decoredResponse = json_decode($response, true);
 
             if(!isset($decoredResponse['ok']) || false === $decoredResponse['ok']){
-                // TODO: throw exception
+                throw new SendNotificationException(
+                    'Error sending Telegram notification: ' . $response
+                );
             }
         }
     }

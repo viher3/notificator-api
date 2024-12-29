@@ -2,6 +2,7 @@
 
 namespace App\Notification\Domain\Service\Notificator\Email;
 
+use App\Notification\Domain\Exception\SendNotificationException;
 use App\Notification\Domain\Notification;
 use App\Notification\Domain\Service\Notificator\Notificator;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -33,6 +34,12 @@ final class EmailNotificator implements Notificator
             $email->addTo($to);
         }
 
-        $this->mailer->send($email);
+        try{
+            $this->mailer->send($email);
+        }catch (\Exception $e){
+            throw new SendNotificationException(
+                'Error sending Email notification: ' . $e->getMessage()
+            );
+        }
     }
 }
