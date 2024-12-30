@@ -17,7 +17,7 @@ class CreateCrudHandler implements CommandHandler
     {
     }
 
-    public function execute(CreatedCrudCommand $command)
+    public function __invoke(CreatedCrudCommand $command)
     {
         /** @var CrudRepository $repository */
         $repository = $this->entityManager->getRepository($command->entityName);

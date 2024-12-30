@@ -28,9 +28,8 @@ final class SendNotificationHandler implements CommandHandler
     {
         $notification = $this->notificationFactory->create(
             new NotificationDto(
-                type: $command->type,
+                notificationChannelId: $command->notificationChannelId,
                 to: $command->recipients,
-                from: $command->from,
                 message: $command->message,
                 createdAt: DomainClock::fromString($command->createdAt),
                 subject: $command->subject,

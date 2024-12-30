@@ -62,4 +62,9 @@ class NotificationChannel extends CrudEntity
     {
         return $this->configuration;
     }
+
+    public function getConfig(string $key): mixed
+    {
+        return $this->configuration[$key] ?? null;
+    }
 }

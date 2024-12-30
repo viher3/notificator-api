@@ -7,8 +7,7 @@ use App\Core\Domain\Bus\Command\Command;
 readonly class SendNotificationCommand implements Command
 {
     public function __construct(
-        public string $type,
-        public string $from,
+        public string $notificationChannelId,
         public string $message,
         public array $recipients,
         public string $createdAt,
