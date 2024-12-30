@@ -1,5 +1,5 @@
 send_single_email_notification:
-  path: /notifications/send
+  path: /notifications/{notificationChannelId}/send
   methods: POST
   controller: Apps\Api\src\Controller\Notification\SendNotificationController
 

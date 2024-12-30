@@ -2,17 +2,18 @@
 
 namespace App\Notification\Domain\Service\Notificator\Email;
 
+use App\Notification\Domain\Entity\EmailNotification;
 use App\Notification\Domain\Entity\Notification;
 use App\Notification\Domain\Exception\SendNotificationException;
 use App\Notification\Domain\Service\Notificator\Notificator;
+use App\NotificationChannel\Domain\Service\Email\NotificationChannelMailerAdapter;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
 final class EmailNotificator implements Notificator
 {
     public function __construct(
-        private MailerInterface $mailer
+        private NotificationChannelMailerAdapter $notificationChannelMailerAdapter
     )
     {
     }
@@ -35,7 +36,9 @@ final class EmailNotificator implements Notificator
         }
 
         try{
-            $this->mailer->send($email);
+            /** @var EmailNotification $notification */
+            $mailer = $this->notificationChannelMailerAdapter->adapt($notification);
+            $mailer->send($email);
         }catch (\Exception $e){
             throw new SendNotificationException(
                 'Error sending Email notification: ' . $e->getMessage()
