@@ -1,0 +1,19 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                   https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+    <entity
+        name="App\NotificationChannel\Domain\Entity\NotificationChannel"
+        table="notification_channels"
+    >
+        <id name="id" type="string" column="id">
+            <generator strategy="NONE"/>
+        </id>
+        <field name="provider" column="provider" type="string" />
+        <field name="enabled" column="enabled" type="boolean" />
+        <field name="createdAt" column="created_at" type="clock" />
+        <field name="updatedAt" column="updated_at" type="clock" />
+        <field name="configuration" column="configuration" type="json" nullable="true" />
+
+    </entity>
+</doctrine-mapping>

@@ -2,15 +2,17 @@
 
 namespace App\Notification\Domain\Service\Notificator;
 
-use App\Notification\Domain\Notification;
+use App\Notification\Domain\Entity\Notification;
+use App\Notification\Domain\Entity\PendingNotification;
 use App\Notification\Domain\Enum\NotificationType;
-use App\Notification\Domain\PendingNotification;
-use App\Notification\Domain\Service\Notificator\Email\SendEmailNotificator;
+use App\Notification\Domain\Service\Notificator\Email\EmailNotificator;
+use App\Notification\Domain\Service\Notificator\Telegram\TelegramNotificator;
 
 class NotificatorProviderFactory
 {
     public function __construct(
-        private SendEmailNotificator $emailNotificator,
+        private EmailNotificator $emailNotificator,
+        private TelegramNotificator $telegramNotificator
     )
     {
     }
@@ -44,6 +46,7 @@ class NotificatorProviderFactory
     {
         return match ($type){
             NotificationType::EMAIL->value => $this->emailNotificator,
+            NotificationType::TELEGRAM->value => $this->telegramNotificator,
             default => throw new \Exception('Unexpected Notification type.')
         };
     }

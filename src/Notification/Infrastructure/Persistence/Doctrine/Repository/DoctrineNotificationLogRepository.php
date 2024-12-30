@@ -3,7 +3,7 @@
 namespace App\Notification\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Core\Infrastructure\Persistence\Doctrine\DoctrineRepository;
-use App\Notification\Domain\NotificationLog;
+use App\Notification\Domain\Entity\NotificationLog;
 use App\Notification\Domain\Repository\NotificationLogRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;

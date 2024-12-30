@@ -5,9 +5,9 @@ namespace App\Notification\Application\SendBatchNotifications;
 use App\Core\Domain\Bus\Command\CommandHandler;
 use App\Core\Domain\Bus\Event\EventBus;
 use App\Core\Domain\Time\DomainClock;
+use App\Notification\Domain\Entity\NotificationCollection;
 use App\Notification\Domain\Factory\NotificationDto;
 use App\Notification\Domain\Factory\NotificationFactory;
-use App\Notification\Domain\NotificationCollection;
 use App\Notification\Domain\Service\Notificator\SendNotificationStrategy;
 
 final class SendBatchNotificationsHandler implements CommandHandler
@@ -30,9 +30,8 @@ final class SendBatchNotificationsHandler implements CommandHandler
         foreach ($sendBatchEmailsCommand->notifications as $notification) {
             $notification = $this->notificationFactory->create(
                 new NotificationDto(
-                    type: $notification['type'],
+                    notificationChannelId: $notification['notificationChannelId'],
                     to: $notification['to'] ?? null,
-                    from: $notification['from'] ?? null,
                     message: $notification['message'] ?? null,
                     createdAt: DomainClock::fromString($sendBatchEmailsCommand->createdAt),
                     subject: $notification['subject'] ?? '',

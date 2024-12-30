@@ -3,7 +3,7 @@
 namespace App\Notification\Domain\Repository;
 
 use App\Core\Domain\Filter\FilterCollection;
-use App\Notification\Domain\PendingNotification;
+use App\Notification\Domain\Entity\PendingNotification;
 use App\Notification\Domain\ValueObject\PendingNotificationId;
 
 interface PendingNotificationRepository

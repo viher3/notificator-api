@@ -3,7 +3,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                    https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
     <entity
-        name="App\Notification\Domain\PendingNotification"
+        name="App\Notification\Domain\Entity\PendingNotification"
         table="pending_notifications"
     >
         <id name="id" type="string" column="id" length="36">

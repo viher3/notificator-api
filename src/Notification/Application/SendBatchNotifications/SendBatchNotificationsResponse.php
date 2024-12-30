@@ -3,7 +3,7 @@
 namespace App\Notification\Application\SendBatchNotifications;
 
 use App\Core\Domain\Bus\Command\CommandResponse;
-use App\Notification\Domain\NotificationCollection;
+use App\Notification\Domain\Entity\NotificationCollection;
 
 readonly class SendBatchNotificationsResponse implements CommandResponse
 {

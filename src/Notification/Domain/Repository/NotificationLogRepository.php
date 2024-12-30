@@ -2,7 +2,7 @@
 
 namespace App\Notification\Domain\Repository;
 
-use App\Notification\Domain\NotificationLog;
+use App\Notification\Domain\Entity\NotificationLog;
 
 interface NotificationLogRepository
 {

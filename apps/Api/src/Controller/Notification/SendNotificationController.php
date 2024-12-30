@@ -4,8 +4,6 @@ namespace Apps\Api\src\Controller\Notification;
 
 use App\Core\Infrastructure\Time\SystemClock;
 use App\Notification\Application\SendNotification\SendNotificationCommand;
-use App\Notification\Application\SendNotification\SendNotificationHandler;
-use App\Notification\Domain\Enum\NotificationType;
 use Apps\Api\src\Controller\BaseController;
 use Assert\Assert;
 use Assert\AssertionFailedException;
@@ -15,35 +13,26 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SendNotificationController extends BaseController
 {
-    public function __invoke(Request $request): JsonResponse
+    public function __invoke(string $notificationChannelId, Request $request): JsonResponse
     {
         $body = json_decode($request->getContent(), true);
 
         try {
-            $type = $body['type'] ?? null;
-            $to = $body['to'] ?? null;
-            $from = $body['from'] ?? null;
+            $to = $body['to'] ?? [];
             $message = $body['message'] ?? null;
             $subject = $body['subject'] ?? '';
             $isSendConfirmationRequired = $body['isSendConfirmationRequired'] ?? false;
 
-            $notificationTypes = array_map(fn(NotificationType $type) => $type->value, NotificationType::cases());
-
+            // TODO: move field validation to NotificationFactory class.
             Assert::lazy()
-                ->that($type)
-                    ->notEmpty('"type" field is not specified.')
-                    ->inArray($notificationTypes, 'Invalid "type" value.')
-                ->that($to)
-                    ->notEmpty('"to" field is not specified.')
-                    ->isArray('"to" field must be an array')
-                ->that($from)->notEmpty('"from" field is not specified.')
+                ->that($notificationChannelId)
+                    ->notEmpty('"notificationChannelId" field is not specified.')
                 ->that($message)->notEmpty('"message" field is not specified.')
                 ->verifyNow();
 
             $this->dispatch(
                 new SendNotificationCommand(
-                    type: $type,
-                    from: $from,
+                    notificationChannelId: $notificationChannelId,
                     message: $message,
                     recipients: $to,
                     createdAt: (new SystemClock())->__toString(),

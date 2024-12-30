@@ -2,7 +2,7 @@
 
 namespace App\Notification\Domain\Service\Notificator;
 
-use App\Notification\Domain\NotificationCollection;
+use App\Notification\Domain\Entity\NotificationCollection;
 
 interface BatchNotificator
 {
