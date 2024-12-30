@@ -26,11 +26,20 @@ paths:
         '500':
           description: Internal server error
 
-  /notifications/send/batch:
+  /notifications/{notificationChannelId}/send/batch:
     post:
       summary: Send batch notifications
       tags:
         - 📧 Notifications
+
+      parameters:
+        - name: notificationChannelId
+          in: path
+          description: NotificationChannel ID
+          required: true
+          schema:
+            type: string
+
       requestBody:
         required: true
         content:
