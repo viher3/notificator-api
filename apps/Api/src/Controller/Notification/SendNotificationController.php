@@ -4,7 +4,6 @@ namespace Apps\Api\src\Controller\Notification;
 
 use App\Core\Infrastructure\Time\SystemClock;
 use App\Notification\Application\SendNotification\SendNotificationCommand;
-use App\Notification\Application\SendNotification\SendNotificationHandler;
 use App\Notification\Domain\Enum\NotificationType;
 use Apps\Api\src\Controller\BaseController;
 use Assert\Assert;

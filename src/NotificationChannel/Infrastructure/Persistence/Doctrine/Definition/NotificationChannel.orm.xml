@@ -6,7 +6,7 @@
         name="App\NotificationChannel\Domain\Entity\NotificationChannel"
         table="notification_channels"
     >
-        <id name="id" type="string" column="id" length="36">
+        <id name="id" type="string" column="id">
             <generator strategy="NONE"/>
         </id>
         <field name="provider" column="provider" type="string" />
