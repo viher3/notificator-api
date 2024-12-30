@@ -3,8 +3,8 @@
 namespace App\Notification\Domain\Service\PendingNotification;
 
 use App\Core\Domain\Time\Clock;
+use App\Notification\Domain\Entity\PendingNotification;
 use App\Notification\Domain\Factory\NotificationFactory;
-use App\Notification\Domain\PendingNotification;
 use App\Notification\Domain\Service\Notificator\NotificatorProviderFactory;
 
 class SendPendingNotification

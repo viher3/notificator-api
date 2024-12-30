@@ -6,5 +6,12 @@ doctrine:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/src/Notification/Infrastructure/Persistence/Doctrine/Definition'
-                prefix: 'App\Notification\Domain'
+                prefix: 'App\Notification\Domain\Entity'
                 alias: Notification
+
+            NotificationChannel:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/NotificationChannel/Infrastructure/Persistence/Doctrine/Definition'
+                prefix: 'App\NotificationChannel\Domain\Entity'
+                alias: NotificationChannel

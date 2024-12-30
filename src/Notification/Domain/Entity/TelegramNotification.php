@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notification\Domain;
+namespace App\Notification\Domain\Entity;
 
 use App\Core\Domain\Time\DomainClock;
 use App\Notification\Domain\Enum\NotificationType;

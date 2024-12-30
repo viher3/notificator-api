@@ -3,8 +3,8 @@
 namespace App\Notification\Domain\Event;
 
 use App\Core\Domain\Bus\Event\DomainEvent;
-use App\Notification\Domain\Notification;
-use App\Notification\Domain\TextNotification;
+use App\Notification\Domain\Entity\Notification;
+use App\Notification\Domain\Entity\TextNotification;
 
 class NotificationSent extends DomainEvent
 {

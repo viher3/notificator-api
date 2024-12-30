@@ -3,8 +3,8 @@
 namespace App\Notification\Application\NotificationLog;
 
 use App\Core\Domain\Bus\Event\EventHandler;
+use App\Notification\Domain\Entity\NotificationLog;
 use App\Notification\Domain\Event\NotificationSent;
-use App\Notification\Domain\NotificationLog;
 use App\Notification\Domain\Repository\NotificationLogRepository;
 
 /**

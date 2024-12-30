@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Notification\Domain;
+namespace App\Notification\Domain\Entity;
 
-use App\Core\Domain\Time\Clock;
 use App\Core\Domain\Aggregate\AggregateRoot;
-use App\Core\Domain\ValueObject\Uuid;
+use App\Core\Domain\Time\Clock;
 use App\Notification\Domain\ValueObject\NotificationLogId;
 
 class NotificationLog extends AggregateRoot

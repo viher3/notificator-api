@@ -5,9 +5,9 @@ namespace App\Notification\Application\SearchPendingNotifications;
 use App\Core\Domain\Bus\Query\QueryHandler;
 use App\Core\Domain\Bus\Query\QueryResponse;
 use App\Core\Domain\Filter\DomainFilterCollection;
-use App\Notification\Domain\PendingNotificationCollection;
-use App\Notification\Domain\Repository\PendingNotificationRepository;
+use App\Notification\Domain\Entity\PendingNotificationCollection;
 use App\Notification\Domain\Filter\PendingNotification\SentAtIsNullFilter;
+use App\Notification\Domain\Repository\PendingNotificationRepository;
 
 class SearchPendingNotificationsHandler implements QueryHandler
 {

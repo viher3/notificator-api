@@ -2,7 +2,7 @@
 
 namespace App\Notification\Domain\Service\Notificator;
 
-use App\Notification\Domain\Notification;
+use App\Notification\Domain\Entity\Notification;
 
 interface Notificator
 {

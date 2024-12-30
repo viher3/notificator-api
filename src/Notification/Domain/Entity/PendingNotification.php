@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Notification\Domain;
+namespace App\Notification\Domain\Entity;
 
-use App\Core\Domain\Time\Clock;
 use App\Core\Domain\Aggregate\AggregateRoot;
+use App\Core\Domain\Time\Clock;
 use App\Core\Domain\Time\DomainClock;
 use App\Notification\Domain\Event\NotificationSent;
 use App\Notification\Domain\Factory\NotificationDto;

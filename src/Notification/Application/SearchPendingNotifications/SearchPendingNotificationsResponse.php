@@ -3,7 +3,7 @@
 namespace App\Notification\Application\SearchPendingNotifications;
 
 use App\Core\Application\Query\SearchResponse;
-use App\Notification\Domain\PendingNotificationCollection;
+use App\Notification\Domain\Entity\PendingNotificationCollection;
 
 class SearchPendingNotificationsResponse implements SearchResponse
 {

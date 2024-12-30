@@ -6,7 +6,7 @@ use App\Core\Domain\Filter\FilterCollection;
 use App\Core\Infrastructure\Filter\DoctrineFilterCollection;
 use App\Core\Infrastructure\Persistence\Doctrine\DoctrineRepository;
 use App\Core\Infrastructure\Persistence\Doctrine\Services\Search\QueryBuilderSearch;
-use App\Notification\Domain\PendingNotification;
+use App\Notification\Domain\Entity\PendingNotification;
 use App\Notification\Domain\Repository\PendingNotificationRepository;
 use App\Notification\Domain\ValueObject\PendingNotificationId;
 use Doctrine\ORM\EntityManagerInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notification\Domain;
+namespace App\Notification\Domain\Entity;
 
 use App\Core\Domain\Bus\Event\DomainEvent;
 use App\Notification\Domain\Service\Notificator\SendNotificationStrategy;

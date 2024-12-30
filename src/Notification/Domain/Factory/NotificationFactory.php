@@ -2,10 +2,10 @@
 
 namespace App\Notification\Domain\Factory;
 
-use App\Notification\Domain\Notification;
-use App\Notification\Domain\EmailNotification;
+use App\Notification\Domain\Entity\EmailNotification;
+use App\Notification\Domain\Entity\Notification;
+use App\Notification\Domain\Entity\TelegramNotification;
 use App\Notification\Domain\Enum\NotificationType;
-use App\Notification\Domain\TelegramNotification;
 
 class NotificationFactory
 {

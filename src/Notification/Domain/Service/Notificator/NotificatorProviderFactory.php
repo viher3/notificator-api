@@ -2,9 +2,9 @@
 
 namespace App\Notification\Domain\Service\Notificator;
 
-use App\Notification\Domain\Notification;
+use App\Notification\Domain\Entity\Notification;
+use App\Notification\Domain\Entity\PendingNotification;
 use App\Notification\Domain\Enum\NotificationType;
-use App\Notification\Domain\PendingNotification;
 use App\Notification\Domain\Service\Notificator\Email\EmailNotificator;
 use App\Notification\Domain\Service\Notificator\Telegram\TelegramNotificator;
 

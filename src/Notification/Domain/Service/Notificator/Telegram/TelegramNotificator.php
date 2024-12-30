@@ -2,8 +2,8 @@
 
 namespace App\Notification\Domain\Service\Notificator\Telegram;
 
+use App\Notification\Domain\Entity\Notification;
 use App\Notification\Domain\Exception\SendNotificationException;
-use App\Notification\Domain\Notification;
 use App\Notification\Domain\Service\Notificator\Notificator;
 
 class TelegramNotificator implements Notificator

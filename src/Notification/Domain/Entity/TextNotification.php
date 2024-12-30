@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notification\Domain;
+namespace App\Notification\Domain\Entity;
 
 class TextNotification extends Notification
 {
