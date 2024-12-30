@@ -2,25 +2,35 @@
 
 namespace App\NotificationChannel\Domain\Entity;
 
-use App\Core\Domain\Aggregate\AggregateRoot;
+use App\Core\Domain\Crud\CrudEntity;
 use App\Core\Domain\Time\Clock;
 use App\NotificationChannel\Domain\ValueObject\Provider;
 
-class NotificationChannel extends AggregateRoot
+class NotificationChannel extends CrudEntity
 {
-    private string $provider;
-    private Clock $updatedAt;
+    protected string $id;
+    protected string $provider;
+    protected array $configuration;
+    protected Clock $createdAt;
+    protected Clock $updatedAt;
+    protected bool $enabled = true;
 
-    public function __construct(
-        private string $id,
+    public static function create(
+        string $id,
         Provider $provider,
-        private Clock $createdAt,
-        private array $configuration,
-        private bool $enabled = true
-    )
+        Clock $createdAt,
+        array $configuration,
+        bool $enabled = true
+    ) : self
     {
-        $this->provider = $provider->value();
-        $this->updatedAt = $this->createdAt;
+        $notificationChannel = new self();
+        $notificationChannel->id = $id;
+        $notificationChannel->provider = $provider->value();
+        $notificationChannel->configuration = $configuration;
+        $notificationChannel->createdAt = $createdAt;
+        $notificationChannel->updatedAt = $createdAt;
+        $notificationChannel->enabled = $enabled;
+        return $notificationChannel;
     }
 
     public function getUpdatedAt(): Clock

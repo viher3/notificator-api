@@ -12,4 +12,6 @@ interface CrudRepository extends SearchRepository
     public function persist(AggregateRoot $entity): void;
 
     public function remove(AggregateRoot $entity): void;
+
+    public function getEntityName() : string;
 }
