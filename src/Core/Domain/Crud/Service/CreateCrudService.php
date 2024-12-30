@@ -12,12 +12,14 @@ final class CreateCrudService
         string $entityName,
         CrudFieldCollection $fields,
         CrudRepository $crudRepository
-    ) : void
+    ) : CrudEntity
     {
         /** @var CrudEntity $crudEntity */
         $crudEntity = new $entityName();
         $crudEntity->partialUpdate($fields);
 
         $crudRepository->persist($crudEntity);
+
+        return $crudEntity;
     }
 }
