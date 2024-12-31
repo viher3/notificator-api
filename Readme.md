@@ -11,7 +11,7 @@ Send notifications using an API.
 ### Comming soon features
 
 - Manage users and API tokens.
-- Manage notificator providers: 
+- Manage notificator channels: 
   - *Email* 
   - *Telegram*
   - *Slack*
@@ -23,15 +23,11 @@ Send notifications using an API.
 
 `http://localhost:8000/docs`
 
-### Available notificator providers
+### Available notificator channels
 
 - ✅ Email
+- ✅ Telegram
 - ❌ SMS
-- ❌ Telegram
 - ❌ Slack
 - ❌ Discord
 
-### Comming soon features
-
-- Commit notifications before sending.
-- Manage provider channels *(email senders, telegram channels, etc)*.
